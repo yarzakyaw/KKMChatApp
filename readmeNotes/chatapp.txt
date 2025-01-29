@@ -1,0 +1,68 @@
+Terminal
+D:
+cd kkmchatapp
+
+1. npx create-next-app .
+----------------------------------
+2. see version
+
+3. npx hardhat init
+see hardhat version see and copy ==> install of the following command: 
+
+Create a JavaScript project
+
+4. npm install --save-dev "hardhat@^2.12.0" "@nomicfoundation/hardhat-toolbox@^2.0.0" 
+
+delete contractsထဲက Lock.solဖျက်
+
+
+-------------------------------------------------------------------------------------------------------------------------
+5. npm i -S ethers@5.7.2 (see version previous reference json file)
+
+6. npm i web3modal (no need to see version)
+
+7. file copy
+
+6.  npx hardhat node ( left terminal (local blockchain))
+
+######### npx hardhat node --hostname 192.168.1.7  <==IP
+
+######### hardhat.config.js 192.168.1.7 ဖြစ်ရမယ်
+
+
+7. Login matamask ( need to connect with hardhat server ( need to construct manual server of hardhat (first time)) 
+
+8. Matamask (Account - Kokomin52467@....Kokomin20819@)
+
+9. contexts ထဲက  json. file ကို delete
+
+10.   npx hardhat run scripts/deploy.js --network localhost   ( right terminal မှာလုပ်ရန်)  succefully ဖြစ်ရင် 
+
+###### npx hardhat run scripts/deploy.js --network custom
+
+11. left terminal မှာ contract address ကို ကြည့်ပီး constant.js ထဲကဟာနဲ့ တူမတူတိုက်စစ်ရန် 
+
+12. တိုက်စစ်ပြီးရင် artifacts ထဲက contracts ထဲက KKMChatApp.sol ထဲက json file ကို context folder ထဲကို move လုပ်ရန်
+
+13. ပီးရင် npm run dev (right terminal တွင် ရိုက်ရန်) <==
+
+14. link ကို Ctrl + left click နိုပ် local brower ပွင့်မည်.. 
+
+15. account add ရဲ့ private key ကိုစစ်ရန် -- ပြီးမှ (အမည်စာရင်းမှတ်ပုံတင်မည် ) ထဲမှာ register လုပ်ရန် .. 
+
+16. create account ဖြစ်ရင် comfirmed ပေး 
+
+
+Metamask
+Kokomin52467@
+Kokomin20819@
+
+
+Naychisoe52467@
+unfair bright cliff turkey response small badge rally innocent pink candy artist
+Naychisoe20819@
+army glad venue auto salmon digital quote retreat matrix cabbage usage pool
+
+Minkoko52467@
+exchange tumble honey apart bring slice observe earth teach attitude radar math
+

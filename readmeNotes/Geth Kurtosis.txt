@@ -1,0 +1,448 @@
+Open Ubuntu , ls , cd kkm private blockchain or (k tab)
+------------------------------------------------------------------
+Open Docker Desktop ==> go note file
+Copy ==> kurtosis clean -a && kurtosis --enclave kkm-testnet run github.com/ethpandaops/ethereum-package --args-file network_params.yaml
+
+
+get address & private keys 20 pairs ==>  
+
+dora က blockchain explorer ==> example port http://127.0.0.1:4266 ==> တခြားစက်ကဖွင့်မယ်ဆိုရင် deploy လုပ်တဲ့စက်ရဲ့ host IP: 4266
+----------------------------------------------------------------------
+
+Add network in MetaMask ==> el-1 က rpc ၃ ကြောင်းမြောက် == rpc: 8545/tcp -> 127.0.0.1:7948
+=========================================================================================
+Deploy လုပ်ရန်အဆင့် ==> npx hardhat balances --network private (Deploy လုပ်တာ Network ချိတ်မချိတ်စစ်) == hardhat.config.js မှာ el.1 ရဲ့ port ချိန်း ဉပမာ :2658
+
+			==> npx hardhat run scripts/deploy.js --network private == Artifact ထဲက KKMChatApp.json ကို ==>context ထည့် move = replace, 
+				context = constant ထဲ Smart Contract address ကို modify လုပ် key ချိန်း 
+==> npm run dev ==
+
+
+
+
+
+
+
+sudo mkdir /mnt/d
+sudo mount -t drvfs D: /mnt/d
+cd /mnt/d/kkmgethblockchain
+
+kurtosis --enclave kkm-testnet run github.com/ethpandaops/ethereum-package
+
+kurtosis clean -a && kurtosis --enclave kkm-testnet run github.com/ethpandaops/ethereum-package --args-file network_params.yaml
+
+npx hardhat balances --network private
+npx hardhat compile
+npx hardhat run scripts/deploy.js --network private
+npm run dev
+
+
+
+
+
+kurtosis run github.com/ethpandaops/ethereum-package --args-file ./network_params.yaml --image-download always
+kurtosis run --enclave my-testnet github.com/ethpandaops/ethereum-package --args-file ./network_params.yaml --image-download always
+
+
+curl -X POST -H "Content-Type: application/json" --data '{"method":"eth_blockNumber","params":[],"id":1,"jsonrpc":"2.0"}' http://127.0.0.1:12897
+
+
+Starlark code successfully run. Output was:
+{
+        "all_participants": [
+                {
+                        "cl_context": {
+                                "beacon_grpc_url": "",
+                                "beacon_http_url": "http://172.16.20.13:4000",
+                                "beacon_service_name": "cl-1-lighthouse-geth",
+                                "cl_nodes_metrics_info": [
+                                        {
+                                                "config": {
+                                                        "labels": null,
+                                                        "scrape_interval": "15s"
+                                                },
+                                                "name": "cl-1-lighthouse-geth",
+                                                "path": "/metrics",
+                                                "url": "172.16.20.13:5054"
+                                        }
+                                ],
+                                "client_name": "lighthouse",
+                                "enr": "enr:-MS4QGUQUeDBj7hV3bAsSi1sYSSGcuXIggfpFIUzSRs8824uXKxby3u2Sx4-ehG6Wyl6DKILhapH5pC16ytp2ji44OgDh2F0dG5ldHOIAAAAAAAAGACEZXRoMpABzFWtYAAAOADh9QUAAAAAgmlkgnY0gmlwhKwQFA2EcXVpY4IjKYlzZWNwMjU2azGhAhfRwGnincLg5mzD2UD0D22i1YlcNZPPWNqTz7iE2G9jiHN5bmNuZXRzAIN0Y3CCIyiDdWRwgiMo",
+                                "http_port": 4000,
+                                "ip_addr": "172.16.20.13",
+                                "multiaddr": "/ip4/172.16.20.13/tcp/9000/p2p/16Uiu2HAkw2eryWRMxf8kiyK1oJmssLzEX5una2yQ3YMT6tZWQ9xe",
+                                "peer_id": "16Uiu2HAkw2eryWRMxf8kiyK1oJmssLzEX5una2yQ3YMT6tZWQ9xe",
+                                "snooper_enabled": false,
+                                "snooper_engine_context": null,
+                                "supernode": false,
+                                "validator_keystore_files_artifact_uuid": "1-lighthouse-geth-0-63-0"
+                        },
+                        "cl_type": "lighthouse",
+                        "el_context": {
+                                "client_name": "geth",
+                                "el_metrics_info": [
+                                        {
+                                                "config": {
+                                                        "labels": null,
+                                                        "scrape_interval": "15s"
+                                                },
+                                                "name": "el-1-geth-lighthouse",
+                                                "path": "/debug/metrics/prometheus",
+                                                "url": "172.16.20.10:9001"
+                                        }
+                                ],
+                                "engine_rpc_port_num": 8551,
+                                "enode": "enode://5bfe8704ac30267505e8b8aa974169d908b8a29064c076170f546c567db7b94278183eeb5914975f8fb6fb2c02c8abe795f9350158bc32b35c17f95b56cdeb96@172.16.20.10:30303",
+                                "enr": "enr:-Ki4QBXiCFIosJQMM3iKtdHtnaofh9NZQjXAkcL_zWbChAsLC3W5XtN0jOqb4XvOQ-kmJCZILnRRCTad2dVhyTqj2GiGAZMl8eeXg2V0aMzLhAkp5MyFCVgGON6CaWSCdjSCaXCErBAUColzZWNwMjU2azGhAlv-hwSsMCZ1Bei4qpdBadkIuKKQZMB2Fw9UbFZ9t7lChHNuYXDAg3RjcIJ2X4N1ZHCCdl8",
+                                "ip_addr": "172.16.20.10",
+                                "rpc_http_url": "http://172.16.20.10:8545",
+                                "rpc_port_num": 8545,
+                                "service_name": "el-1-geth-lighthouse",
+                                "ws_port_num": 8546,
+                                "ws_url": "ws://172.16.20.10:8546"
+                        },
+                        "el_type": "geth",
+                        "ethereum_metrics_exporter_context": null,
+                        "remote_signer_context": null,
+                        "remote_signer_type": "web3signer",
+                        "snooper_beacon_context": null,
+                        "snooper_engine_context": null,
+                        "vc_context": {
+                                "client_name": "lighthouse",
+                                "metrics_info": {
+                                        "config": {
+                                                "labels": null,
+                                                "scrape_interval": "15s"
+                                        },
+                                        "name": "vc-1-geth-lighthouse",
+                                        "path": "/metrics",
+                                        "url": "172.16.20.16:8080"
+                                },
+                                "service_name": "vc-1-geth-lighthouse"
+                        },
+                        "vc_type": "lighthouse",
+                        "xatu_sentry_context": null
+                },
+                {
+                        "cl_context": {
+                                "beacon_grpc_url": "",
+                                "beacon_http_url": "http://172.16.20.14:4000",
+                                "beacon_service_name": "cl-2-lighthouse-geth",
+                                "cl_nodes_metrics_info": [
+                                        {
+                                                "config": {
+                                                        "labels": null,
+                                                        "scrape_interval": "15s"
+                                                },
+                                                "name": "cl-2-lighthouse-geth",
+                                                "path": "/metrics",
+                                                "url": "172.16.20.14:5054"
+                                        }
+                                ],
+                                "client_name": "lighthouse",
+                                "enr": "enr:-MS4QANhOr8LGs7Mwh2V4FsKuptzLTSYBiD9RMhEIclg6S9GBH-9IZ2O80d7wufjO-jC_YuRp4CeIY37dyP5Zd9yVWcDh2F0dG5ldHOIAAAAAAAMAACEZXRoMpABzFWtYAAAOADh9QUAAAAAgmlkgnY0gmlwhKwQFA6EcXVpY4IjKYlzZWNwMjU2azGhAuozCT9XD9-zrFVhWwVd2Psx81Ya34qmEGiwTWg-d3E6iHN5bmNuZXRzAIN0Y3CCIyiDdWRwgiMo",
+                                "http_port": 4000,
+                                "ip_addr": "172.16.20.14",
+                                "multiaddr": "/ip4/172.16.20.14/tcp/9000/p2p/16Uiu2HAmBBtWzQqjDft6Vs4HZisq5NMhbcoRgSttjsnGYsYYDxnV",
+                                "peer_id": "16Uiu2HAmBBtWzQqjDft6Vs4HZisq5NMhbcoRgSttjsnGYsYYDxnV",
+                                "snooper_enabled": false,
+                                "snooper_engine_context": null,
+                                "supernode": false,
+                                "validator_keystore_files_artifact_uuid": "2-lighthouse-geth-64-127-0"
+                        },
+                        "cl_type": "lighthouse",
+                        "el_context": {
+                                "client_name": "geth",
+                                "el_metrics_info": [
+                                        {
+                                                "config": {
+                                                        "labels": null,
+                                                        "scrape_interval": "15s"
+                                                },
+                                                "name": "el-2-geth-lighthouse",
+                                                "path": "/debug/metrics/prometheus",
+                                                "url": "172.16.20.11:9001"
+                                        }
+                                ],
+                                "engine_rpc_port_num": 8551,
+                                "enode": "enode://2bb6c12fa58d5e80c79f0e269d254ea40cae6f7960e72421fee0c7a5c2c7f36965c2c69ac7303fbab67118f1ee4e61cf760c294b93a3d37c766e247a58e021ec@172.16.20.11:30303",
+                                "enr": "enr:-Ki4QKj7Bj-1cm4HP2dkuG0kkbdYwH1OD8J1FWYGeyll_9FfYphyJJpEvGppDZo0dRUomNEhFpWFzE72NUQctexfLUOGAZMl8fiag2V0aMzLhAkp5MyFCVgGON6CaWSCdjSCaXCErBAUC4lzZWNwMjU2azGhAiu2wS-ljV6Ax58OJp0lTqQMrm95YOckIf7gx6XCx_NphHNuYXDAg3RjcIJ2X4N1ZHCCdl8",
+                                "ip_addr": "172.16.20.11",
+                                "rpc_http_url": "http://172.16.20.11:8545",
+                                "rpc_port_num": 8545,
+                                "service_name": "el-2-geth-lighthouse",
+                                "ws_port_num": 8546,
+                                "ws_url": "ws://172.16.20.11:8546"
+                        },
+                        "el_type": "geth",
+                        "ethereum_metrics_exporter_context": null,
+                        "remote_signer_context": null,
+                        "remote_signer_type": "web3signer",
+                        "snooper_beacon_context": null,
+                        "snooper_engine_context": null,
+                        "vc_context": {
+                                "client_name": "lighthouse",
+                                "metrics_info": {
+                                        "config": {
+                                                "labels": null,
+                                                "scrape_interval": "15s"
+                                        },
+                                        "name": "vc-2-geth-lighthouse",
+                                        "path": "/metrics",
+                                        "url": "172.16.20.17:8080"
+                                },
+                                "service_name": "vc-2-geth-lighthouse"
+                        },
+                        "vc_type": "lighthouse",
+                        "xatu_sentry_context": null
+                },
+                {
+                        "cl_context": {
+                                "beacon_grpc_url": "",
+                                "beacon_http_url": "http://172.16.20.15:4000",
+                                "beacon_service_name": "cl-3-teku-geth",
+                                "cl_nodes_metrics_info": [
+                                        {
+                                                "config": {
+                                                        "labels": null,
+                                                        "scrape_interval": "15s"
+                                                },
+                                                "name": "cl-3-teku-geth",
+                                                "path": "/metrics",
+                                                "url": "172.16.20.15:8008"
+                                        }
+                                ],
+                                "client_name": "teku",
+                                "enr": "enr:-LK4QMzpWx1GHrGsmYYYSOSzcGRDYZMJr1kZWzmR5mWg6M8jTTwwwN2sdZqW48-SzRLmJPa4rnaDS4v9k1T-xTqO9UkEh2F0dG5ldHOIgAEAAAAAAACEZXRoMpABzFWtYAAAOADh9QUAAAAAgmlkgnY0gmlwhKwQFA-Jc2VjcDI1NmsxoQIGphe8Tw17Leh03sVUXjZLodHVUODMebrHnKFGlF4xk4N0Y3CCIyiDdWRwgiMo",
+                                "http_port": 4000,
+                                "ip_addr": "172.16.20.15",
+                                "multiaddr": "/ip4/172.16.20.15/tcp/9000/p2p/16Uiu2HAkusdKUp39Zr4M3JdR9XwG3KcweEqNDodps12xJsneZy2A",
+                                "peer_id": "16Uiu2HAkusdKUp39Zr4M3JdR9XwG3KcweEqNDodps12xJsneZy2A",
+                                "snooper_enabled": false,
+                                "snooper_engine_context": null,
+                                "supernode": false,
+                                "validator_keystore_files_artifact_uuid": "3-teku-geth-128-191-0"
+                        },
+                        "cl_type": "teku",
+                        "el_context": {
+                                "client_name": "geth",
+                                "el_metrics_info": [
+                                        {
+                                                "config": {
+                                                        "labels": null,
+                                                        "scrape_interval": "15s"
+                                                },
+                                                "name": "el-3-geth-teku",
+                                                "path": "/debug/metrics/prometheus",
+                                                "url": "172.16.20.12:9001"
+                                        }
+                                ],
+                                "engine_rpc_port_num": 8551,
+                                "enode": "enode://e6df223a03c24c6df4a7fb4b7ff4d8d7e0ff5797e9f3246cf02cecc7f36e5862089f5a781602c016763bd53ee0804557b2ed93dd202e8591e535a89b546dc299@172.16.20.12:30303",
+                                "enr": "enr:-Ki4QNn5k5r8TaGUHHFYW_PuauU3xXayu-5e302gsRHAx8lbHJv7k3AklFJEjXb14stkAf4hApuxxJxr5V2HFa8f6vGGAZMl8gtkg2V0aMzLhAkp5MyFCVgGON6CaWSCdjSCaXCErBAUDIlzZWNwMjU2azGhA-bfIjoDwkxt9Kf7S3_02Nfg_1eX6fMkbPAs7MfzblhihHNuYXDAg3RjcIJ2X4N1ZHCCdl8",
+                                "ip_addr": "172.16.20.12",
+                                "rpc_http_url": "http://172.16.20.12:8545",
+                                "rpc_port_num": 8545,
+                                "service_name": "el-3-geth-teku",
+                                "ws_port_num": 8546,
+                                "ws_url": "ws://172.16.20.12:8546"
+                        },
+                        "el_type": "geth",
+                        "ethereum_metrics_exporter_context": null,
+                        "remote_signer_context": null,
+                        "remote_signer_type": "web3signer",
+                        "snooper_beacon_context": null,
+                        "snooper_engine_context": null,
+                        "vc_context": null,
+                        "vc_type": "teku",
+                        "xatu_sentry_context": null
+                }
+        ],
+        "blockscout_sc_verif_url": null,
+        "final_genesis_timestamp": "1731508446",
+        "genesis_validators_root": "0xa63a1b2ffefb0fea452e9ad530c9a4bbd58c97c6ad82da001f142be64c91d61b",
+        "grafana_info": {
+                "dashboard_path": "/d/QdTOwy-nz/eth2-merge-kurtosis-module-dashboard?orgId=1",
+                "password": "admin",
+                "user": "admin"
+        },
+        "network_id": "37751",
+        "network_params": {
+                "additional_preloaded_contracts": {},
+                "churn_limit_quotient": 65536,
+                "custody_requirement": 4,
+                "data_column_sidecar_subnet_count": 128,
+                "deneb_fork_epoch": 0,
+                "deposit_contract_address": "0x4242424242424242424242424242424242424242",
+                "devnet_repo": "ethpandaops",
+                "eip7594_fork_epoch": 100000002,
+                "eip7594_fork_version": "0x60000038",
+                "ejection_balance": 16000000000,
+                "electra_fork_epoch": 100000000,
+                "eth1_follow_distance": 2048,
+                "fulu_fork_epoch": 100000001,
+                "genesis_delay": 20,
+                "genesis_gaslimit": 30000000,
+                "max_blobs_per_block": 6,
+                "max_per_epoch_activation_churn_limit": 8,
+                "min_validator_withdrawability_delay": 256,
+                "network": "kurtosis",
+                "network_id": "37751",
+                "network_sync_base_url": "https://snapshots.ethpandaops.io/",
+                "num_validator_keys_per_node": 64,
+                "prefunded_accounts": {},
+                "preregistered_validator_count": 0,
+                "preregistered_validator_keys_mnemonic": "giant issue aisle success illegal bike spike question tent bar rely arctic volcano long crawl hungry vocal artwork sniff fantasy very lucky have athlete",
+                "preset": "mainnet",
+                "samples_per_slot": 8,
+                "seconds_per_slot": 12,
+                "shard_committee_period": 256
+        },
+        "pre_funded_accounts": [
+                {
+                        "address": "0x8943545177806ED17B9F23F0a21ee5948eCaa776",
+                        "private_key": "bcdf20249abf0ed6d944c0288fad489e33f66b3960d9e6229c1cd214ed3bbe31"                },
+                {
+                        "address": "0xE25583099BA105D9ec0A67f5Ae86D90e50036425",
+                        "private_key": "0x39725efee3fb28614de3bacaffe4cc4bd8c436257e2c8bb887c4b5c4be45e76d"
+                },
+                {
+                        "address": "0x614561D2d143621E126e87831AEF287678B442b8",
+                        "private_key": "0x53321db7c1e331d93a11a41d16f004d7ff63972ec8ec7c25db329728ceeb1710"
+                },
+                {
+                        "address": "0xf93Ee4Cf8c6c40b329b0c0626F28333c132CF241",
+                        "private_key": "0xab63b23eb7941c1251757e24b3d2350d2bc05c3c388d06f8fe6feafefb1e8c70"
+                },
+                {
+                        "address": "0x802dCbE1B1A97554B4F50DB5119E37E8e7336417",
+                        "private_key": "5d2344259f42259f82d2c140aa66102ba89b57b4883ee441a8b312622bd42491"
+                },
+                {
+                        "address": "0xAe95d8DA9244C37CaC0a3e16BA966a8e852Bb6D6",
+                        "private_key": "0x27515f805127bebad2fb9b183508bdacb8c763da16f54e0678b16e8f28ef3fff"
+                },
+                {
+                        "address": "0x2c57d1CFC6d5f8E4182a56b4cf75421472eBAEa4",
+                        "private_key": "7ff1a4c1d57e5e784d327c4c7651e952350bc271f156afb3d00d20f5ef924856"
+                },
+                {
+                        "address": "0x741bFE4802cE1C4b5b00F9Df2F5f179A1C89171A",
+                        "private_key": "0x3a91003acaf4c21b3953d94fa4a6db694fa69e5242b2e37be05dd82761058899"
+                },
+                {
+                        "address": "0xc3913d4D8bAb4914328651C2EAE817C8b78E1f4c",
+                        "private_key": "bb1d0f125b4fb2bb173c318cdead45468474ca71474e2247776b2b4c0fa2d3f5"
+                },
+                {
+                        "address": "0x65D08a056c17Ae13370565B04cF77D2AfA1cB9FA",
+                        "private_key": "0x850643a0224065ecce3882673c21f56bcf6eef86274cc21cadff15930b59fc8c"
+                },
+                {
+                        "address": "0x3e95dFbBaF6B348396E6674C7871546dCC568e56",
+                        "private_key": "0x94eb3102993b41ec55c241060f47daa0f6372e2e3ad7e91612ae36c364042e44"
+                },
+                {
+                        "address": "0x5918b2e647464d4743601a865753e64C8059Dc4F",
+                        "private_key": "0xdaf15504c22a352648a71ef2926334fe040ac1d5005019e09f6c979808024dc7"
+                },
+                {
+                        "address": "0x589A698b7b7dA0Bec545177D3963A2741105C7C9",
+                        "private_key": "0xeaba42282ad33c8ef2524f07277c03a776d98ae19f581990ce75becb7cfa1c23"
+                },
+                {
+                        "address": "0x4d1CB4eB7969f8806E2CaAc0cbbB71f88C8ec413",
+                        "private_key": "3fd98b5187bf6526734efaa644ffbb4e3670d66f5d0268ce0323ec09124bff61"
+                },
+                {
+                        "address": "0xF5504cE2BcC52614F121aff9b93b2001d92715CA",
+                        "private_key": "5288e2f440c7f0cb61a9be8afdeb4295f786383f96f5e35eb0c94ef103996b64"
+                },
+                {
+                        "address": "0xF61E98E7D47aB884C244E39E031978E33162ff4b",
+                        "private_key": "0xf296c7802555da2a5a662be70e078cbd38b44f96f8615ae529da41122ce8db05"
+                },
+                {
+                        "address": "0xf1424826861ffbbD25405F5145B5E50d0F1bFc90",
+                        "private_key": "0xbf3beef3bd999ba9f2451e06936f0423cd62b815c9233dd3bc90f7e02a1e8673"
+                },
+                {
+                        "address": "0xfDCe42116f541fc8f7b0776e2B30832bD5621C85",
+                        "private_key": "0x6ecadc396415970e91293726c3f5775225440ea0844ae5616135fd10d66b5954"
+                },
+                {
+                        "address": "0xD9211042f35968820A3407ac3d80C725f8F75c14",
+                        "private_key": "0xa492823c3e193d6c595f37a18e3c06650cf4c74558cc818b16130b293716106f"
+                },
+                {
+                        "address": "0xD8F3183DEF51A987222D845be228e0Bbb932C222",
+                        "private_key": "0xc5114526e042343c6d1899cad05e1c00ba588314de9b96929914ee0df18d46b2"
+                },
+                {
+                        "address": "0xafF0CA253b97e54440965855cec0A8a2E2399896",
+                        "private_key": "0x4b9f63ecf84210c5366c66d68fa1f5da1fa4f634fad6dfc86178e4d79ff9e59"
+                }
+        ]
+}
+
+⭐ us on GitHub - https://github.com/kurtosis-tech/kurtosis
+INFO[2024-11-13T14:36:35Z] =======================================================
+INFO[2024-11-13T14:36:35Z] ||          Created enclave: stunning-fjord          ||
+INFO[2024-11-13T14:36:35Z] =======================================================
+Name:            stunning-fjord
+UUID:            ce23b2480ad8
+Status:          RUNNING
+Creation Time:   Wed, 13 Nov 2024 14:32:16 UTC
+Flags:
+
+========================================= Files Artifacts =========================================
+UUID           Name
+a51934195c02   1-lighthouse-geth-0-63-0
+da9301c60fb4   2-lighthouse-geth-64-127-0
+c5f9feb6d162   3-teku-geth-128-191-0
+0f4ffb659c35   dora-config
+b67433f4395d   el_cl_genesis_data
+11807a39e4aa   final-genesis-timestamp
+f0252f87c1f5   genesis-el-cl-env-file
+a5d8ce3f9aca   genesis_validators_root
+884c96097ff2   jwt_file
+1c8bf52ecf42   keymanager_file
+9edaf7b80c90   prysm-password
+8072ba2aeb43   validator-ranges
+
+========================================== User Services ==========================================
+UUID           Name                                             Ports                                         Status
+25711ce3f830   cl-1-lighthouse-geth                             http: 4000/tcp -> http://127.0.0.1:13060      RUNNING
+                                                                metrics: 5054/tcp -> http://127.0.0.1:13061
+                                                                tcp-discovery: 9000/tcp -> 127.0.0.1:13062
+                                                                udp-discovery: 9000/udp -> 127.0.0.1:51783
+36455a38c0b3   cl-2-lighthouse-geth                             http: 4000/tcp -> http://127.0.0.1:13924      RUNNING
+                                                                metrics: 5054/tcp -> http://127.0.0.1:13925
+                                                                tcp-discovery: 9000/tcp -> 127.0.0.1:13929
+                                                                udp-discovery: 9000/udp -> 127.0.0.1:52069
+e8a67a8d5106   cl-3-teku-geth                                   http: 4000/tcp -> http://127.0.0.1:14011      RUNNING
+                                                                metrics: 8008/tcp -> http://127.0.0.1:14012
+                                                                tcp-discovery: 9000/tcp -> 127.0.0.1:14014
+                                                                udp-discovery: 9000/udp -> 127.0.0.1:54844
+478b167a41f2   dora                                             http: 8080/tcp -> http://127.0.0.1:14909      RUNNING
+45042593aa85   el-1-geth-lighthouse                             engine-rpc: 8551/tcp -> 127.0.0.1:12899       RUNNING
+                                                                metrics: 9001/tcp -> http://127.0.0.1:12900
+                                                                rpc: 8545/tcp -> 127.0.0.1:12897
+                                                                tcp-discovery: 30303/tcp -> 127.0.0.1:12896
+                                                                udp-discovery: 30303/udp -> 127.0.0.1:59527
+                                                                ws: 8546/tcp -> 127.0.0.1:12898
+b27f85791d92   el-2-geth-lighthouse                             engine-rpc: 8551/tcp -> 127.0.0.1:12910       RUNNING
+                                                                metrics: 9001/tcp -> http://127.0.0.1:12911
+                                                                rpc: 8545/tcp -> 127.0.0.1:12908
+                                                                tcp-discovery: 30303/tcp -> 127.0.0.1:12912
+                                                                udp-discovery: 30303/udp -> 127.0.0.1:51656
+                                                                ws: 8546/tcp -> 127.0.0.1:12909
+6e81fc94d7b0   el-3-geth-teku                                   engine-rpc: 8551/tcp -> 127.0.0.1:12970       RUNNING
+                                                                metrics: 9001/tcp -> http://127.0.0.1:12966
+                                                                rpc: 8545/tcp -> 127.0.0.1:12968
+                                                                tcp-discovery: 30303/tcp -> 127.0.0.1:12967
+                                                                udp-discovery: 30303/udp -> 127.0.0.1:51699
+                                                                ws: 8546/tcp -> 127.0.0.1:12969
+14e30fea38c8   validator-key-generation-cl-validator-keystore   <none>                                        RUNNING
+ff3d6f1d1fe8   vc-1-geth-lighthouse                             metrics: 8080/tcp -> http://127.0.0.1:14841   RUNNING
+76dc70845adb   vc-2-geth-lighthouse                             metrics: 8080/tcp -> http://127.0.0.1:14870   RUNNING

@@ -1,0 +1,288 @@
+ipfs daemon
+
+Access the Web UI: http://<YourLocalIPAddress>:5001/webui
+Access the API: http://<YourLocalIPAddress>:5001/api/v0/
+
+WebUI: http://127.0.0.1:5001/webui
+Gateway server listening on /ip4/0.0.0.0/tcp/8080
+
+
+Steps to Configure IPFS for LAN Access
+Open the IPFS Configuration File:
+You will need to edit your IPFS configuration file, which is located at C:\Users\User\.ipfs\config. You can open this file using Notepad or any text editor. Here’s how to do it:
+
+powershell
+notepad C:\Users\User\.ipfs\config  
+Locate the Addresses Section:
+In the configuration file, look for the Addresses section. It should look something like this:
+
+json
+"Addresses": {  
+   "API": "/ip4/127.0.0.1/tcp/5001",  
+   "Gateway": "/ip4/127.0.0.1/tcp/8080",  
+   "Swarm": [  
+       "/ip4/127.0.0.1/tcp/4001",  
+       "/ip6/::1/tcp/4001"  
+   ]  
+}  
+Modify Addresses:
+Change the API, Gateway, and Swarm addresses to allow connections from your local network. Replace 127.0.0.1 with 0.0.0.0 to listen on all network interfaces. The modified section should look like this:
+
+json
+"Addresses": {  
+   "API": "/ip4/0.0.0.0/tcp/5001",  
+   "Gateway": "/ip4/0.0.0.0/tcp/8080",  
+   "Swarm": [  
+       "/ip4/0.0.0.0/tcp/4001",  
+       "/ip6/::/tcp/4001"  
+   ]  
+}  
+This change allows your IPFS node to accept connections from any IP address assigned to your network interfaces.
+
+Save the Changes:
+After making the changes, save the file and close Notepad.
+
+Restart the IPFS Daemon:
+You will need to stop and then restart the IPFS daemon for the changes to take effect. If it's running, use Ctrl + C to stop it, then start it again with:
+
+bash
+ipfs daemon  
+Accessing the IPFS Node from Other Devices on the LAN
+Now that you've configured your IPFS node to accept connections from any address:
+
+Find Your Local IP Address:
+You can find your local machine's IP address by running the following command in PowerShell:
+
+powershell
+ipconfig  
+Look for the IPv4 Address under your active network connection (usually something like 192.168.x.x).
+
+Connecting from Other Devices:
+You can now access the IPFS API or Web UI from other devices on the same network using your local IP address. For example:
+
+Access the Web UI: http://<YourLocalIPAddress>:5001/webui
+Access the API: http://<YourLocalIPAddress>:5001/api/v0/
+
+
+npm install ipfs-http-client
+
+
+
+You're on the right track with your approach to sending files in a decentralized application (dApp) using IPFS. Since you want to add file-sharing functionality to your existing Solidity contract, here’s how you can implement it:
+
+Steps to Implement File Sending
+Store Files on IPFS:
+
+First, you need to upload the file (like documents or images) to IPFS. This can be done using libraries like ipfs-http-client in your React frontend. After uploading, you will receive a unique IPFS hash that represents the file.
+Modify the Solidity Contract:
+
+You will need to add a new function in your contract to handle file links. This function will accept the IPFS hash and store it in a way similar to how messages are stored.
+Send the IPFS Link:
+
+When sending a file, you will send the IPFS link instead of a text message.
+Updated Solidity Contract
+Here’s how you can modify your existing contract to include file sending functionality:
+
+solidity
+// SPDX-License-Identifier: MIT  
+pragma solidity >=0.7.0 <0.9.0;  
+
+contract KKMChatApp {  
+
+    //USER STRUCT  
+    struct user {  
+        string name;  
+        friend[] friendList;  
+    }  
+
+    struct friend {  
+        address pubkey;  
+        string name;  
+    }  
+
+    struct message {  
+        address sender;  
+        uint256 timestamp;  
+        string msg;  
+    }  
+
+    struct file {  
+        address sender;  
+        uint256 timestamp;  
+        string ipfsHash; // Store the IPFS hash of the file  
+    }  
+
+    struct AllUserStruct {  
+        string name;  
+        address accountAddress;  
+    }  
+
+    AllUserStruct[] getAllUsers;  
+
+    mapping(address => user) userList;  
+    mapping(bytes32 => message[]) allMessages;  
+    mapping(bytes32 => file[]) allFiles; // Store files by chat code  
+
+    // Existing functions...  
+
+    //SEND MESSAGE  
+    function sendMessage(address friend_key, string calldata _msg) external {  
+        require(checkUserExists(msg.sender), "Create an account first");  
+        require(checkUserExists(friend_key), "User is not registered");  
+        require(checkAlreadyFriends(msg.sender, friend_key), "You are not friends with the given user");  
+
+        bytes32 chatCode = _getChatCode(msg.sender, friend_key);  
+        message memory newMsg = message(msg.sender, block.timestamp, _msg);  
+        allMessages[chatCode].push(newMsg);  
+    }  
+
+    //SEND FILE  
+    function sendFile(address friend_key, string calldata ipfsHash) external {  
+        require(checkUserExists(msg.sender), "Create an account first");  
+        require(checkUserExists(friend_key), "User is not registered");  
+        require(checkAlreadyFriends(msg.sender, friend_key), "You are not friends with the given user");  
+
+        bytes32 chatCode = _getChatCode(msg.sender, friend_key);  
+        file memory newFile = file(msg.sender, block.timestamp, ipfsHash);  
+        allFiles[chatCode].push(newFile);  
+    }  
+
+    //READ FILES  
+    function readFiles(address friend_key) external view returns(file[] memory) {  
+        bytes32 chatCode = _getChatCode(msg.sender, friend_key);  
+        return allFiles[chatCode];  
+    }  
+
+    // Other existing functions...  
+}  
+Frontend Implementation
+In your React application, you can use the ipfs-http-client to upload files to IPFS before sending them through your smart contract:
+
+Install IPFS Client:
+
+bash
+npm install ipfs-http-client  
+Upload File to IPFS:
+Here’s an example of how to upload a file and then send it using your contract:
+
+javascript
+import { create } from 'ipfs-http-client';  
+
+const ipfs = create({ url: 'https://ipfs.infura.io:5001/api/v0' });  
+
+const uploadFile = async (file) => {  
+    const added = await ipfs.add(file);  
+    return added.path; // This is the IPFS hash  
+};  
+
+const sendFile = async (file, friendAddress) => {  
+    const ipfsHash = await uploadFile(file);  
+    await contract.methods.sendFile(friendAddress, ipfsHash).send({ from: userAccount });  
+};  
+Read Files:
+You can then call the readFiles function to retrieve the files shared in the chat.
+
+
+
+You will need to add two new functions to handle file uploads and retrievals in your KKMChatAppProvider. Below is the updated code with the new functions included:
+
+javascript
+import React, { useState, useEffect } from 'react';  
+import { useRouter } from 'next/router';  
+import {   
+    CheckIfWalletConnected,   
+    connectWallet,   
+    connectingWithContract,  
+} from '@/Utils/apiFeature';  
+import { create } from 'ipfs-http-client'; // Importing IPFS client  
+
+export const KKMChatAppContext = React.createContext();  
+
+const ipfs = create({ url: 'http://localhost:5001' }); // Connect to your IPFS node  
+
+export const KKMChatAppProvider = ({ children }) => {  
+  //USESTATE  
+  const [account, setAccount] = useState("");  
+  const [userName, setUserName] = useState("");  
+  const [friendLists, setFriendLists] = useState([]);  
+  const [friendMsg, setFriendMsg] = useState([]);  
+  const [loading, setLoading] = useState(false);  
+  const [userLists, setUserLists] = useState([]);  
+  const [error, setError] = useState("");  
+
+  //CHAT USER DATA  
+  const [currentUserName, setCurrentUserName] = useState("");  
+  const [currentUserAddress, setCurrentUserAddress] = useState("");  
+
+  const router = useRouter();  
+
+  //FETCH DATA TIME OF PAGE LOAD  
+  const fetchData = async () => {  
+    try {  
+      const contract = await connectingWithContract();  
+      const connectAccount = await connectWallet();  
+      setAccount(connectAccount);  
+      const userName = await contract.getUsername(connectAccount);  
+      setUserName(userName);  
+      const friendLists = await contract.getMyFriendList();  
+      setFriendLists(friendLists);  
+      const userList = await contract.getAllAppUser();  
+      setUserLists(userList);  
+    } catch (error) {  
+      console.log(error);  
+    }  
+  };  
+
+  useEffect(() => {  
+    fetchData();  
+  }, []);  
+
+  // Existing functions...  
+
+  //SEND FILE TO YOUR FRIEND  
+  const sendFile = async ({ file, address }) => {  
+    try {  
+      if (!file || !address) return setError("Please select a file and provide the address");  
+
+      const addedFile = await ipfs.add(file); // Upload file to IPFS  
+      const fileHash = addedFile.path; // Get the IPFS hash of the file  
+
+      const contract = await connectingWithContract();  
+      const addFile = await contract.sendFile(address, fileHash); // Call your smart contract method  
+      setLoading(true);  
+      await addFile.wait();  
+      setLoading(false);  
+      window.location.reload();  
+    } catch (error) {  
+      setError("Error sending file. Please try again.");  
+    }  
+  };  
+
+  //READ FILE FROM YOUR FRIEND  
+  const readFile = async (friendAddress) => {  
+    try {  
+      const contract = await connectingWithContract();  
+      const fileHash = await contract.readFile(friendAddress); // Call your smart contract method  
+      const file = await ipfs.cat(fileHash); // Retrieve the file from IPFS  
+      const fileContent = new TextDecoder().decode(file); // Decode the file content  
+      console.log("File content:", fileContent); // Use the file content as needed  
+    } catch (error) {  
+      console.log("Error reading file:", error);  
+    }  
+  };  
+
+  // Existing functions...  
+
+  return (  
+    <KKMChatAppContext.Provider  
+      value={{  
+        // Existing values...  
+        sendFile,  
+        readFile,  
+        // Other values...  
+      }}  
+    >  
+      {children}  
+    </KKMChatAppContext.Provider>  
+  );  
+};  

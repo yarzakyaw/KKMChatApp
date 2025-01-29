@@ -1,0 +1,12 @@
+npx hardhat node --hostname 192.168.1.106==================================  (hardhat.config.js 192.168.1.7 ဖြစ်ရမယ်)
+
+npx hardhat run scripts/deploy.js --network custom
+
+===================================================================================Login matamask 
+
+===================================================================================contexts ထဲက  json. file ကို delete
+
+npx hardhat run scripts/deploy.js --network custom
+====================================================================================အပေါ် terminal မှာ contract address ကို ကြည့်ပီး constant.js ထဲကဟာနဲ့ တူမတူတိုက်စစ်ရန် 
+===================တိုက်စစ်ပြီးရင် artifacts ထဲက contracts ထဲက KKMChatApp.sol ထဲက json file ကို context folder ထဲကို move လုပ်ရန်
+npm run dev

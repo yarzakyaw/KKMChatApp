@@ -1,0 +1,130 @@
+.Chat{
+    padding: 2rem;
+    background-color: rgba(0,0,0,0.25);
+    border-radius: .5rem;
+    overflow-y: scroll;
+}
+
+.Chat_box{
+    display: grid;
+    grid-template-columns: 1fr;
+    height: 50vh;
+    width: 80%;
+    margin:  0 auto;
+    overflow-y: scroll;
+}
+
+.Chat_box_right p{
+    background-color: #f182035b;
+    padding: 1rem;
+    border-top-right-radius: .5rem;
+    border-top-left-radius: .5rem;
+    border-bottom-left-radius: .5rem;
+    position: relative;
+    text-align: right;
+}
+
+.Chat_box_left p {
+    width: auto;
+    background-color: #908c875b;
+    padding: 1rem;
+    border-top-right-radius: .5rem;
+    border-top-left-radius: .5rem;
+    border-bottom-left-radius: .5rem;
+    position: relative;
+    border: 1px solid #ccc; /* Optional border for definition */
+}
+
+.Chat_box_left_title{
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    font-size: 1rem;
+}
+
+.Chat_box_send_img{
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.Chat_box_send_img input{
+    width: 100%;
+    background-color: #f182035b;
+    outline: none;
+    border: none;
+    padding: 1rem;
+    color: #f18203;
+    border-radius: .5rem;
+}
+
+.Chat_user_info{
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    line-height: 1;
+}
+
+.Chat_user_info_box h4,
+.Chat_user_info_box p{
+    line-height: 0;
+}
+
+.filePreview {  
+    display: flex; /* Align items horizontally */
+    align-items: center; /* Vertically center the items */
+    gap: 0.5rem; /* Space between the icon and file name */
+    background-color: #908c875b; /* Light background for better visibility */
+    padding: 0.5rem; /* Padding around the content */
+    border-radius: 0.5rem; /* Rounded corners */
+    margin-top: 1rem; /* Spacing above the document preview */
+    margin-bottom: 1rem;
+    border: 1px solid #ccc; /* Optional border for definition */
+}
+
+/* Optional: styles for the document icon */  
+.fileIcon {
+    width: 50px; /* Set desired width for the icon */
+    height: 50px; /* Set desired height for the icon */
+}
+
+.sentFile {  
+    max-width: 50%; /* Ensure the image is responsive */  
+    height: auto; /* Maintain aspect ratio */  
+    border-radius: 0.5rem; /* Optional: add some rounding */  
+    margin-top: 1rem;
+}
+
+.videoPlayer {  
+    max-width: 50%; /* Make the audio player responsive */  
+    height: auto; /* Maintain aspect ratio */  
+    display: flex; /* Align items horizontally */
+    align-items: center; /* Vertically center the items */
+    margin-bottom: 1rem;
+    margin-top: 1rem;
+}
+
+.audioPlayer {  
+    max-width: 100%; /* Make the audio player responsive */  
+    height: 4rem; /* Maintain aspect ratio */  
+    display: flex; /* Align items horizontally */
+    align-items: center; /* Vertically center the items */
+    margin-bottom: 1rem;
+} 
+
+@media only screen and (max-width: 35em) {
+    .Chat{
+        padding: 1rem;
+    }
+
+    .Chat p{
+        font-size: .8rem;
+    }
+    .Chat small{
+        font-size: .8rem;
+    }
+
+    .show{
+        display: none;
+    }
+}
