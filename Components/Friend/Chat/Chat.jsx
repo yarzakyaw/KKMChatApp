@@ -17,21 +17,34 @@ const Chat = ({
     loading,
     currentUserName,
     currentUserAddress,
-    readUser
+    readUser,
+    chatData, // Prop from Friend.jsx
   }) => {
     //USTE STATE
     const [message, setMessage] = useState("");
     const [selectedFile, setSelectedFile] = useState(null);
-    const [chatData, setChatData] = useState({
-      name: "",
-      address: "",
-    });
-    const router = useRouter();
-  
+    // const [chatData, setChatData] = useState({
+    //   name: "",
+    //   address: "",
+    // });
+    // const router = useRouter();
+
     useEffect(() => {
+      console.log("Received chatData prop:", chatData);
+      if (chatData.address) {
+        readMessage(chatData.address);
+        readUser(chatData.address);
+        console.log("Reading messages and user info for address:", chatData.address);
+      } else {
+        console.warn("No chat address provided in chatData");
+      }
+    }, [chatData.address, readMessage, readUser]);
+  
+    /* useEffect(() => {
       if (!router.isReady) return;
       setChatData(router.query);
-    }, [router.isReady]);
+      console.log("Chat data set from router query:", router.query);
+    }, [router.isReady]); */
   
     /* useEffect(() => {
       if (chatData.address) {
@@ -39,12 +52,13 @@ const Chat = ({
         readUser(chatData.address);
       }
     }, []); */
-    useEffect(() => {
+    /* useEffect(() => {
       if (chatData.address) {
         readMessage(chatData.address);
         readUser(chatData.address);
+        console.log("Reading messages and user info for address:", chatData.address);
       }
-    }, [chatData.address, readMessage, readUser]);
+    }, [chatData.address, readMessage, readUser]); */
 
     const logToServer = async (message) => {  
       try {  
@@ -67,7 +81,11 @@ const Chat = ({
     };
 
     const handleSendMessage = async () => {
-      if (!chatData.address) return; 
+      console.log("Starting handleSendMessage - Message:", message, "Address:", chatData.address, "File:", selectedFile ? selectedFile.name : "none");
+      if (!chatData.address) {
+        console.error("No chat address provided");
+        return;
+      }
       await logToServer("Starting to send message");
   
       // Check if a file is selected
@@ -75,6 +93,7 @@ const Chat = ({
           const fileType = selectedFile.type;
           await logToServer(`Selected file type: ${fileType}`);
           await logToServer(`Selected file name: ${selectedFile.name}`);
+          console.log("Processing file type:", fileType);
   
           if (fileType.startsWith('image/')) {
               await functionName({  
@@ -124,6 +143,8 @@ const Chat = ({
               file: null
           });
           await logToServer("Sent a text message");
+        } else {
+          console.error("No message provided for sending");
         }
           // If no file is selected, just send the message
           /* await functionName({
@@ -136,6 +157,7 @@ const Chat = ({
       // Clear inputs after sending  
       setMessage("");  
       setSelectedFile(null);
+      console.log("Inputs cleared after sending");
     };
 
     const MAX_FILE_SIZE = 1024 * 1024 * 1024; // 5 MB limit
@@ -143,11 +165,14 @@ const Chat = ({
     const handleFileChange = async (e) => {
       const file = e.target.files[0];
       if (file) {
+        console.log("Selected file:", file.name, "Size:", file.size);
         if (file.size > MAX_FILE_SIZE) {
+          console.error("File size exceeds limit:", file.size);
           alert("ဖိုင်အရွယ်အစား သတ်မှတ် ၁ ဂဂ္ဂါဗိုက်ထက် ကျော်လွန်နေပါသည်။");
           setSelectedFile(null); // Clear the selected file
         } else {  
           setSelectedFile(file); // Set the selected file if within limit
+          console.log("File set successfully:", file.name);
         }
       }
     };

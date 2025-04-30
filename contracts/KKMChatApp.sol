@@ -70,7 +70,7 @@ contract KKMChatApp {
         _addFriend(friend_key, msg.sender, userList[msg.sender].name);
     }
 
-    //checkAlreadyFriends
+    //CHECK IF ALREADY FRIEND
     function checkAlreadyFriends(
         address pubkey1,
         address pubkey2
@@ -99,12 +99,12 @@ contract KKMChatApp {
         userList[me].friendList.push(newFriend);
     }
 
-    //GETMY FRIEND
+    //GET FRIEND LIST
     function getMyFriendList() external view returns (friend[] memory) {
         return userList[msg.sender].friendList;
     }
 
-    //get chat code
+    //GET CHAT CODE
     function _getChatCode(
         address pubkey1,
         address pubkey2

@@ -31,7 +31,7 @@ const NavBar = () => {
       <div className={Style.NavBar}>
         <div className={Style.NavBar_box}>
           <div className={Style.NavBar_box_left}>
-            <Image src={images.logo} alt="logo" width={70} height={70} />
+            <Image src={images.hero} alt="hero" width={200} height={200} />
           </div>
           <div className={Style.NavBar_box_right}>
             {/* //DESKTOP */}
@@ -84,7 +84,7 @@ const NavBar = () => {
             )}
   
             {/* CONNECT WALLET */}
-            <div className={Style.NavBar_box_right_connect}>
+            {/* <div className={Style.NavBar_box_right_connect}>
               {account == "" ? (
                 <button onClick={() => connectWallet()}>
                   {""}
@@ -101,6 +101,27 @@ const NavBar = () => {
                   />
                   {""}
                   <small>{userName || "အမည်စာရင်း မှတ်ပုံတင်ပါ"}</small>
+                </button>
+              )}
+            </div> */}
+
+            <div className={Style.NavBar_box_right_connect}>
+              {account && userName ? (
+                <button onClick={() => setOpenModel(true)}>
+                  {""}
+                  <Image
+                    src={images.accountName}
+                    alt="Account image"
+                    width={20}
+                    height={20}
+                  />
+                  {""}
+                  <small>{userName}</small>
+                </button>
+              ) : (
+                <button onClick={() => setOpenModel(true)}>
+                  {""}
+                  <span><small>{"အမည်စာရင်း မှတ်ပုံတင်ပါ"}</small></span>
                 </button>
               )}
             </div>

@@ -23,7 +23,7 @@ module.exports = {
   solidity: "0.8.6",
   networks: {
     custom: {
-      url: "http://192.168.0.104:8545",
+      url: "http://192.168.1.208:9118",
       accounts: [
         "0xdf57089febbacf7ba0bc227dafbffa9fc08a93fdc68e1e42411a14efcf23656e",
         "0xde9be858da4a475276426320d5e9262ecfc3ba460bfac56360bfa6c4c28b4ee0",
@@ -32,7 +32,8 @@ module.exports = {
       ]
     },
     private: {
-      url: "http://127.0.0.1:2463",
+      // url: "http://127.0.0.1:14629",
+      url: "http://192.168.1.208:9118",
       accounts: [  
         "0xbcdf20249abf0ed6d944c0288fad489e33f66b3960d9e6229c1cd214ed3bbe31",
         "0x39725efee3fb28614de3bacaffe4cc4bd8c436257e2c8bb887c4b5c4be45e76d",

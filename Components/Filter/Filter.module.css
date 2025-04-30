@@ -15,7 +15,7 @@
     border-radius: 2rem;
     padding-inline: 1rem;
     background-color: rgba(0,0,0,0.25);
-    color: #f18303;
+    color: #87dfab;
 }
 
 .Filter_box_left_search input{
@@ -37,7 +37,7 @@
     outline: none;
     border: none;
     padding: 1rem 2rem;
-    color: #f18303;
+    color: #3dd167;
     border-radius: 2rem;
     font-weight: 700;
     display: flex;

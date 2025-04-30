@@ -10,7 +10,7 @@ import { Loader } from '../../Components/index';
 const Model = ({
     openBox,
     title,
-    address,
+    // address,
     head,
     info,
     smallInfo,
@@ -19,7 +19,7 @@ const Model = ({
   }) => {
     //USESTATE
     const [name, setName] = useState("");
-    const [userAddress, setUserAddress] = useState(address);
+    // const [userAddress, setUserAddress] = useState(address);
   
     const { loading } = useContext(KKMChatAppContext);
     return (
@@ -52,17 +52,18 @@ const Model = ({
                     onChange={(e) => setName(e.target.value)}
                   />
                 </div>
-                <div className={Style.Model_box_right_name_info}>
+                {/* <div className={Style.Model_box_right_name_info}>
                   <Image src={images.account} alt="user" width={30} height={30} />
                   <input
                     type="text"
                     placeholder={address || "လိပ်စာ ..."}
                     onChange={(e) => setUserAddress(e.target.value)}
                   />
-                </div>
+                </div> */}
   
                 <div className={Style.Model_box_right_name_btn}>
-                  <button onClick={() => functionName({ name, userAddress })}>
+                  {/* <button onClick={() => functionName({ name, userAddress })}> */}
+                  <button onClick={() => functionName({ name})}>
                     {""}
                     <Image src={images.send} alt="send" width={30} height={30} />
                     {""}
